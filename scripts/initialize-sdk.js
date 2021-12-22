@@ -1,6 +1,7 @@
-import { ThirdwebSDK } from '@3rdweb/sdk';
 import ethers from 'ethers';
+import { ThirdwebSDK } from '@3rdweb/sdk';
 
+//Importing and configuring our .env file that we use to securely store our environment variables
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -29,11 +30,12 @@ const sdk = new ThirdwebSDK(
 (async () => {
   try {
     const apps = await sdk.getApps();
-    console.log(`Your address is: ${apps[0].address}`);
-  } catch (error) {
-    console.log(`Failed to get apps from SDK: ${error}`);
+    console.log('Your app address is:', apps[0].address);
+  } catch (err) {
+    console.error('Failed to get apps from the sdk', err);
     process.exit(1);
   }
 })();
 
+// We are exporting the initialized thirdweb SDK so that we can use it in our other scripts
 export default sdk;
